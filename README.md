@@ -12,7 +12,6 @@ A **FastAPI**-based backend service that lets users upload a PDF document and as
 - [API Reference](#api-reference)
 - [Configuration](#configuration)
 - [Running Locally](#running-locally)
-- [Running with Docker](#running-with-docker)
 - [Development](#development)
 - [Known Issues](#known-issues)
 
