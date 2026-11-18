@@ -1,6 +1,5 @@
-from collections.abc import AsyncGenerator
-from langchain.chat_models import BaseChatModel
-from langchain.messages import HumanMessage, SystemMessage
+from langchain_core.language_models.chat_models import BaseChatModel
+from langchain_core.messages import HumanMessage, SystemMessage
 
 
 class LLMService:

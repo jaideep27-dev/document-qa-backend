@@ -3,13 +3,14 @@ from app.api.routers import routers
 from contextlib import asynccontextmanager
 from app.core.config import llm_settings
 
+@asynccontextmanager
 async def lifespan(app: FastAPI):
     # Executing code before application startup
     import os
     os.environ['GOOGLE_API_KEY'] = llm_settings.GOOGLE_API_KEY
     yield
 
-app = FastAPI()
+app = FastAPI(lifespan=lifespan)
 
 app.include_router(routers)
 
