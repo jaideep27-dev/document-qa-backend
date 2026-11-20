@@ -7,6 +7,14 @@ from fastapi.responses import StreamingResponse
 from app.api.dependencies import LLMServiceDep, PdfServiceDep
 from app.schema.qa_model import QAModel
 from app.services.pdf_service import PdfService
+import logging
+
+logger = logging.getLogger(__name__)
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(name)s] %(levelname)s: %(message)s",
+)
 
 router = APIRouter(prefix="/document", tags=["Document"])
 
@@ -34,6 +42,7 @@ async def upload_pdf(
 
     if pdf_bytes:
         pdf_content = pdf_service.read(pdf_bytes)
+        logger.info("PDF content read successfully, sending to LLM as context")
         async for chunk in llm_service.chat(
             query=qa_data.question, pdf_content=pdf_content
         ):
